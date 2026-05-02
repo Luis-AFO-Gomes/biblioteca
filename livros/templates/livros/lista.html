@@ -1,0 +1,16 @@
+{% extends "livros/base.html" %}
+{% block title %}Biblioteca Publica{% endblock %}
+{% block content %}
+  <h1>Biblioteca Publica</h1>
+  {% for livro in livros %}
+    <h2>
+      <a href="{% url 'livros:detalhes_livro' livro.isbn %}">
+        {{ livro.titulo }}
+      </a>
+    </h2>
+    <p class="tipo">
+      formato {{ livro.tipo }} em {{ livro.idioma }}
+    </p>
+    {{ livro.get_status_display|truncatewords:30|linebreaks }}
+  {% endfor %}
+{% endblock %}

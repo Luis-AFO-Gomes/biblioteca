@@ -1,4 +1,15 @@
 from django.db import models
+from django.utils import timezone
+# from django.db.models import Q
+
+class LivroExistManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status=Livro.Status.DISPONIVEL)
+#   def get_queryset(self):    
+#       disponiveis = Q(status=Livro.Status.DISPONIVEL)
+#       emprestados = Q(status=Livro.Status.EMPRESTADO)
+#       reservados = Q(status=Livro.Status.RESERVADO)
+#       return super().get_queryset().filter(disponiveis | emprestados | reservados)
 
 class Editora(models.Model):
     nipc = models.CharField(max_length=9, unique=True, primary_key=True)
@@ -35,6 +46,9 @@ class Livro(models.Model):
         choices=Status.choices,
         default=Status.DISPONIVEL,
     )
+    data_add = models.DateTimeField(default=timezone.now)
+    objects = models.Manager()          # gestor de modelos padrão
+    existentes = LivroExistManager()    # gestor de modelos personalizado para livros existentes
     class Meta:
         ordering = ['titulo']
         indexes = [
