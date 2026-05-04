@@ -1,6 +1,10 @@
 # Biblioteca - Django Project
 
+Project: Django project for a public library management system.
+Step-by-step tutorial for Django beginners.
+
 This repository contains a Django project prepared to work on Windows, macOS, and Linux.
+Uses virtual environments to manage dependencies and ensure a consistent development environment across different operating systems.
 
 ## Project structure
 
