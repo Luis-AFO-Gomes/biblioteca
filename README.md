@@ -67,6 +67,25 @@ If `py` is not available, use:
 python -m venv .venv
 .venv\Scripts\activate
 ```
+Windows might restrict script running in powershell for security reasons. In this case, restrict policy should be changed to allow vertual environment start.<br>
+There are to options available:
+1. Current section only:
+   ```
+   Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+   ```
+2. Permanent permition for current user
+   ```
+   Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+   ```
+- Confirm policy with:
+  ```
+  Get-ExecutionPolicy -List
+  ```
+  Minimum results for each option are:
+   1. ```Process          Bypass```
+   2. ```CurrentUser    RemoteSigned```
+   
+   
 
 ### macOS
 
